@@ -40,11 +40,8 @@ public class Scores implements Serializable {
         this.chemistryScore = chemistryScore;
     }
 
-    // điểm trung bình
-    public double averageOfSubject(){
-       double average= (this.getMathScores()+this.getPhysicalScore()+this.getChemistryScore())/3;
-        return average;
-    }
+
+
 
     @Override
     public String toString() {
@@ -52,7 +49,6 @@ public class Scores implements Serializable {
                 " Môn toán: " + mathScores +
                 ", Môn lý: " + physicalScore +
                 ", Môn hóa: " + chemistryScore +
-                ", Điểm trung bình: "+this.averageOfSubject()+
                 "]";
     }
 }
