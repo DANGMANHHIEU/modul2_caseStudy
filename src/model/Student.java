@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import static model.Scores.*;
+
 public class Student implements Serializable {
     //lựa chon giới tính
     public enum Gender{
@@ -12,6 +14,7 @@ public class Student implements Serializable {
     private String name;
     private Gender gender;
     private LocalDate dateOfBrith;
+    private String phoneNumber;
     private Address address;
     private String email;
     private Scores scores;
@@ -19,11 +22,12 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(String id, String name, Gender gender, LocalDate dateOfBrith, Address address, String email, Scores scores) {
+    public Student(String id, String name, Gender gender, LocalDate dateOfBrith, String phoneNumber, Address address, String email, Scores scores) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.dateOfBrith = dateOfBrith;
+        this.phoneNumber = phoneNumber;
         this.address = address;
         this.email = email;
         this.scores = scores;
@@ -85,6 +89,18 @@ public class Student implements Serializable {
         this.scores = scores;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public double averageOfSubject(){
+        double average= (scores.getMathScores()+scores.getPhysicalScore()+scores.getChemistryScore())/3;
+        return average;
+    }
     @Override
     public String toString() {
         return "*** Student {" +
@@ -92,9 +108,13 @@ public class Student implements Serializable {
                 "| Họ và tên: " + name +
                 "| Giới tính: " + gender +
                 "| Ngày sinh: " + dateOfBrith +
-                ", Email: " + email +"\n"+
+                "| Email: " + email +"\n"+
+                "| SĐT: "+phoneNumber+
                 " Địa chỉ: " + address +"\n"+
                 " Điểm: " + scores +
-                '}';
+                "==> Điểm trung bình: "+this.averageOfSubject()+
+                "}"+
+                "\n"+
+                "----------------------------";
     }
 }
