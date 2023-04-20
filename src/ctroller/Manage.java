@@ -1,10 +1,14 @@
 package ctroller;
 
+import model.Address;
 import model.Scores;
 import model.Student;
 import storage.ReadFile;
 import storage.WriteFile;
+import view.Check;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -111,7 +115,8 @@ public class Manage {
 
         }
         //update sinh viên
-       public void updateStudent(String id,Student student){
+       public void updateStudent(String id){
+           Check check =new Check();
         int index =-1;
            for (int i = 0; i < studentList.size(); i++) {
                if(studentList.get(i).getId().equals(id)){
@@ -119,8 +124,116 @@ public class Manage {
                }
            }
            if(index != -1){
-               studentList.set(index,student);
-               displayStudent();
+
+               Scanner sc=new Scanner(System.in);
+               int choice;
+               do {
+                   System.out.println("""
+              0.Thoát.
+              1.Sửa họ và tên.
+              2.Sửa giới tính.
+              3.Sửa ngày tháng năm sinh.
+              4.Sửa số điện thoại.
+              5.Sửa địa chỉ.
+              6.Sửa Email.
+              7.Sửa điểm.      
+           """);
+                   choice = sc.nextInt();
+                   sc.nextLine();
+                   switch (choice){
+                       case 1:
+                           System.out.println("Nhập họ và tên:");
+                           String name = sc.nextLine();
+                           studentList.get(index).setName(name);
+                           LOGGER.info("Cập nhập tên thành công !!!");
+                           break;
+                       case 2:
+                           System.out.println("Nhập giới tính:");
+                           Student.Gender gender = null;
+                           int choi;
+                           do {
+                               System.out.println("(1:Nam// 2:Nữ// 3:Khác)");
+                               choi = sc.nextInt();
+                               switch (choi) {
+                                   case 1:
+                                       gender = Student.Gender.Nam;
+                                       break;
+                                   case 2:
+                                       gender = Student.Gender.Nữ;
+                                       break;
+                                   case 3:
+                                       gender = Student.Gender.Khác;
+                                       break;
+                               }
+                           }while (choi!=1 && choi!=2 && choi!=3);
+                           studentList.get(index).setGender(gender);
+                           LOGGER.info("Cập nhập giới tính thành công !!!");
+                           break;
+                       case 3:
+                           LocalDate dateOfBrith= null;
+                           boolean checkDate = false;
+                           while (!checkDate){
+                               try {
+                                   System.out.println("Nhập ngày tháng năm sinh (yyyy-mm-dd):");
+                                   dateOfBrith=LocalDate.parse(sc.nextLine());
+                                   checkDate=true;
+                               }catch (DateTimeException e){
+                                   // System.out.println("Ngày tháng năm không hợp lệ !!!");
+                                   LOGGER.info("Ngày tháng năm không hợp lệ !!!");
+                               }
+                           }
+                           studentList.get(index).setDateOfBrith(dateOfBrith);
+                           LOGGER.info("Cập nhập ngày tháng năm sinh thành công !!!");
+                           break;
+                       case 4:
+                           System.out.println("Nhập số điện thoại (+84)-(xxxxxxxxx)");
+                           String phone = sc.nextLine();
+                           while (!check.checkPhone(phone)){
+                               System.out.println("Số điện thoại không đúng,(+84)-(xxxxxxxxx)");
+                               phone=sc.nextLine();
+                           }
+                           studentList.get(index).setPhoneNumber(phone);
+                           LOGGER.info("Cập nhập số điện thoại thành công !!!");
+                           break;
+                       case 5:
+                           System.out.println("Nhập địa chỉ:");
+                           System.out.println("Số nhà:");
+                           String homeNumber = sc.nextLine();
+                           System.out.println("Xã:");
+                           String social = sc.nextLine();
+                           System.out.println("Huyện:");
+                           String provincial= sc.nextLine();
+                           System.out.println("Tỉnh:");
+                           String districts= sc.nextLine();
+                           Address address=new Address(homeNumber,social,provincial,districts);
+                           studentList.get(index).setAddress(address);
+                           LOGGER.info("Cập nhập địa chỉ thành công !!!");
+                           break;
+                       case 6:
+                           System.out.println("Nhập Email:");
+                           String email = sc.nextLine();
+                           while(!check.checkEmail(email)){
+                               // System.out.println("Email không đúng định dạng, nhập lại Email:");
+                               LOGGER.info("Email không đúng định dạng, nhập lại Email !!!");
+                               email=sc.nextLine();
+                           }
+                           studentList.get(index).setEmail(email);
+                           LOGGER.info("Cập nhập Email thành công !!!");
+                           break;
+                       case 7:
+                           System.out.println("Nhập điểm:");
+                           System.out.println("Điểm toán:");
+                           double mathScores = sc.nextDouble();
+                           System.out.println("Điểm lý:");
+                           double  physicalScore = sc.nextDouble();
+                           System.out.println("Điểm hóa:");
+                           double chemistryScore=sc.nextDouble();
+                           Scores scores=new Scores(mathScores,physicalScore,chemistryScore);
+                           studentList.get(index).setScores(scores);
+                           LOGGER.info("Cập nhập điểm thành công !!!");
+                           break;
+                   }
+               }while (choice!=0);
            }
            else {
                LOGGER.info("Không tồn tại mã sinh viên này !!!");
@@ -216,7 +329,19 @@ public class Manage {
              }
           }
 
-
+          // tìm kiếm theo tên
+    public void searchNameStudent(String name){
+        boolean check =false;
+        for (int i = 0; i < studentList.size(); i++) {
+            if(studentList.get(i).getName().toLowerCase().contains(name.toLowerCase())){
+                System.out.println(studentList.get(i));
+                check=true;
+            }
+        }
+        if(!check){
+            LOGGER.info("Không tồn tại tên này !!!");
+        }
+    }
       }
 
 
