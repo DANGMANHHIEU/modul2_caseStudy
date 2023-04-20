@@ -14,6 +14,7 @@ public class Client {
    // public static List<Student> studentList = new ArrayList<>();
    public static Manage manage = new Manage();
     private static final Logger LOGGER =Logger.getLogger(String.valueOf(Manage.class));
+
      //thêm sinh viên
     public static void Add(){
         Check check=new Check();
@@ -111,7 +112,10 @@ public class Client {
 
     //sửa sinh viên
     public static void Update(){
-   //TODO
+     Scanner sc=new Scanner(System.in);
+        System.out.println("Nhập mã sinh viên:");
+     String id =sc.nextLine();
+     manage.updateStudent(id);
     }
 
     //hiển thị sinh viên theo tên
@@ -129,9 +133,23 @@ public class Client {
         manage.studentClassification();
     }
 
+    // tìm kiếm theo mã sinh viên
+    public static void search(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Nhập mã sinh viên:");
+        String id = sc.nextLine();
+       manage.searchStudent(id);
+    }
 
+    //tìm kiếm theo tên
+      public static void searchName(){
+        Scanner sc = new Scanner(System.in);
+          System.out.println("Nhập tên:");
+          String name=sc.nextLine();
+          manage.searchNameStudent(name);
+      }
 
     public static void main(String[] args) {
-        classificationOfAcademics();
+      Update();
     }
 }
