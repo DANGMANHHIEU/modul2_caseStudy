@@ -254,7 +254,25 @@ public class Manage {
         Collections.sort(studentList, new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return o1.getName().compareTo(o2.getName());
+                String o1Name= o1.getName().substring(o1.getName().lastIndexOf(" ")+1);
+                String o2Name=o2.getName().substring(o2.getName().lastIndexOf(" ")+1);
+                int nameCompare = o1Name.compareTo(o2Name);
+                if(nameCompare != 0){
+                    return nameCompare;
+                }
+                else {
+                    String o1_name=o1.getName().substring(o1.getName().indexOf(" ")+1,o1.getName().lastIndexOf(" ")-1);
+                    String o2_name=o2.getName().substring(o2.getName().indexOf(" ")+1,o2.getName().lastIndexOf(" ")-1);
+                    int name_compare=o1_name.compareTo(o2_name);
+                    if(name_compare!=0){
+                        return name_compare;
+                    }
+                    else {
+                        String o1_na_me =o1.getName().substring(0,o1.getName().indexOf(" "));
+                        String o2_na_me =o2.getName().substring(0,o2.getName().indexOf(" "));
+                        return o1_na_me.compareTo(o2_na_me);
+                    }
+                }
             }
         });
         displayStudent();
