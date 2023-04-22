@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Register {
-    public static void main(String[] args) {
+    public static void register() {
         Check check = new Check();
          Logger LOGGER =Logger.getLogger(String.valueOf(Register.class));
         // Nhập thông tin đăng ký từ người dùng
@@ -39,7 +39,7 @@ public class Register {
                 try {
                     // Lưu thông tin người dùng vào tệp
                     FileWriter writer = new FileWriter("users.txt", false);
-                    writer.write(email + "," + password + "\n");
+                    writer.write(email + "," + password1 + "\n");
                     writer.close();
                     System.out.println("Đăng ký thành công!");
                     isPassword=true;  // điều kiện thoát vòng lặp
