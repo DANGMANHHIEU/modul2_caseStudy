@@ -21,6 +21,7 @@ public class Register {
             email = input.nextLine();
         }
 
+
         System.out.println("Nhập mật khẩu: ");
         String password = input.nextLine();
         while (!check.checkPassword(password)) {
@@ -37,7 +38,7 @@ public class Register {
             if (password1.equals(password)) {
                 try {
                     // Lưu thông tin người dùng vào tệp
-                    FileWriter writer = new FileWriter("users.txt", true);
+                    FileWriter writer = new FileWriter("users.txt", false);
                     writer.write(email + "," + password + "\n");
                     writer.close();
                     System.out.println("Đăng ký thành công!");
