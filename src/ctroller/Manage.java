@@ -120,6 +120,7 @@ public class Manage {
         int index =-1;
            for (int i = 0; i < studentList.size(); i++) {
                if(studentList.get(i).getId().equals(id)){
+                   System.out.println(studentList.get(i));
                    index=i;
                }
            }
@@ -144,6 +145,10 @@ public class Manage {
                        case 1:
                            System.out.println("Nhập họ và tên:");
                            String name = sc.nextLine();
+                           while (!check.checkName(name)){
+                               LOGGER.info("Tên không đúng định dạng !!!");
+                               name=sc.nextLine();
+                           }
                            studentList.get(index).setName(name);
                            LOGGER.info("Cập nhập tên thành công !!!");
                            break;
