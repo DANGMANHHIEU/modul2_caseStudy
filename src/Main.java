@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Main {
     //    public static void main(String[] args) {
@@ -83,11 +84,12 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Nhập Email: ");
-        String email = input.nextLine();
+        Logger LOGGER =Logger.getLogger(String.valueOf(Main.class));
 
         boolean checkPass = false;
         while (!checkPass) {
+            System.out.println("Nhập Email: ");
+            String email = input.nextLine();
             System.out.println("Nhập mật khẩu: ");
             String password = input.nextLine();
             try {
@@ -160,7 +162,8 @@ public class Main {
                     } while (choice != 0);
                     checkPass=true;
                 } else {
-                    System.out.println("Đăng nhập thất bại!");
+                   // System.out.println("Đăng nhập thất bại!");
+                    LOGGER.info("Đăng nhập thất bại!");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
