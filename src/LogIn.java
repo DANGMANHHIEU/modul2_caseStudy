@@ -1,17 +1,12 @@
-import ctroller.Manage;
-import model.Address;
-import model.Scores;
-import model.Student;
 import view.Client;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class Main {
+public class LogIn {
     //    public static void main(String[] args) {
 //        Student student=new Student("SV000001","Nguyễn Văn Anh", Student.Gender.Nam, LocalDate.of(1994,12,20),"(+84)-(012345678)",new Address("1A","Tam Trinh","Hoàng Mai","Hà Nội"),"a@gmailk.com",new Scores(8,9,6));
 //        Student student1=new Student("SV000002","Đặng Văn Hoàng", Student.Gender.Nam, LocalDate.of(1993,12,12),"(+84)-(555555555)",new Address("2B","Đình Thôn","Mỹ Đình","Hà Nội"),"b@gmailk.com",new Scores(4,2,5));
@@ -81,10 +76,10 @@ public class Main {
 //        }while (choice!=0);
 //
 //    }
-    public static void main(String[] args) {
+    public static void logIn() {
 
         Scanner input = new Scanner(System.in);
-        Logger LOGGER =Logger.getLogger(String.valueOf(Main.class));
+        Logger LOGGER =Logger.getLogger(String.valueOf(LogIn.class));
 
         boolean checkPass = false;
         while (!checkPass) {
