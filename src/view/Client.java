@@ -28,6 +28,10 @@ public class Client {
 
         System.out.println("Nhập họ và tên:");
         String name = sc.nextLine();
+        while (!check.checkName(name)){
+            LOGGER.info("Tên không đúng định dạng !!!");
+            name=sc.nextLine();
+        }
 
         System.out.println("Nhập giới tính:");
         Student.Gender gender = null;
@@ -149,7 +153,4 @@ public class Client {
           manage.searchNameStudent(name);
       }
 
-    public static void main(String[] args) {
-      Update();
-    }
 }
