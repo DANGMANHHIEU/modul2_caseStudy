@@ -79,13 +79,13 @@ public class LogIn {
     public static void logIn() {
 
         Scanner input = new Scanner(System.in);
-        Logger LOGGER =Logger.getLogger(String.valueOf(LogIn.class));
+        //Logger LOGGER =Logger.getLogger(String.valueOf(LogIn.class));
 
         boolean checkPass = false;
         while (!checkPass) {
-            System.out.println("Nhập Email: ");
+            System.out.println("\u001B[32m"+"Nhập Email: "+"\u001B[0m");
             String email = input.nextLine();
-            System.out.println("Nhập mật khẩu: ");
+            System.out.println("\u001B[32m"+"Nhập mật khẩu: "+"\u001B[0m");
             String password = input.nextLine();
             try {
                 // Tìm kiếm tên đăng nhập và mật khẩu trong tệp
@@ -101,14 +101,15 @@ public class LogIn {
                     }
                 }
                 reader.close();
+                checkPass=true;
                 // Nếu tìm thấy thông tin người dùng, đăng nhập thành công
                 if (found) {
-                    System.out.println("Đăng nhập thành công!");
+                    System.out.println("\u001B[32m"+"Đăng nhập thành công!"+"\u001B[0m");
 
                     Scanner sc = new Scanner(System.in);
                     int choice = 0;
                     do {
-                        System.out.println("""
+                        System.out.println("\u001B[32m"+"""
                                 ***************************************************
                                 ***************************************************
                                 **                                               **
@@ -124,9 +125,9 @@ public class LogIn {
                                 **                                               **
                                 ***************************************************
                                 ***************************************************
-                                """);
+                                """+"\u001B[0m");
                         System.out.println();
-                        System.out.println("Vui lòng chọn chức năng !!!");
+                        System.out.println("\u001B[32m"+"Vui lòng chọn chức năng !!!"+"\u001B[0m");
                         choice = sc.nextInt();
                         switch (choice) {
                             case 1:
@@ -155,13 +156,14 @@ public class LogIn {
                                 break;
                         }
                     } while (choice != 0);
-                    checkPass=true;
+                  //  checkPass=true;
                 } else {
-                   // System.out.println("Đăng nhập thất bại!");
-                    LOGGER.info("Đăng nhập thất bại!");
+                    System.out.println("\u001B[31m"+"Đăng nhập thất bại!"+"\u001B[0m");
+                    //LOGGER.info("Đăng nhập thất bại!");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("\u001B[31m"+"Sai rồi, lại đê"+"\u001B[0m");
             }
         }
     }
