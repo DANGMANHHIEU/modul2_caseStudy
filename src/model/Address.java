@@ -52,11 +52,11 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "[" +
-                "Số nhà: " + homeNumber  +
-                ", Xã: " + social  +
-                ", Huyện: " + provincial  +
-                ", Tỉnh: " + districts  +
+        return "[" +"\u001B[32m"+
+                "Số nhà: "+"\u001B[0m" + homeNumber  +
+                "\u001B[32m"+   ", Xã: " +"\u001B[0m"+ social  +
+                "\u001B[32m"+ ", Huyện: "+"\u001B[0m" + provincial  +
+                "\u001B[32m"+  ", Tỉnh: " +"\u001B[0m"+ districts  +
                 "]";
     }
 }
