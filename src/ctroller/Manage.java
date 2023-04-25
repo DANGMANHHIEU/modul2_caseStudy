@@ -13,7 +13,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 public class Manage {
-    private static final Logger LOGGER =Logger.getLogger(String.valueOf(Manage.class));
+   // private static final Logger LOGGER =Logger.getLogger(String.valueOf(Manage.class));
     Scanner sc = new Scanner(System.in);
     private List<Student> studentList;
     private WriteFile<Student> writeFile;
@@ -44,8 +44,8 @@ public class Manage {
     //thêm sinh viên
     public void addStudent(Student student) {
         if (checkId(student)) {
-//            System.out.println("Mã sinh viên này đã tồn tại !!!");
-            LOGGER.info("Mã sinh viên này đã tồn tại !!!");
+           System.out.println("\u001B[31m"+"Mã sinh viên này đã tồn tại !!!"+"\u001B[0m");
+           // LOGGER.info("Mã sinh viên này đã tồn tại !!!");
             //System.out.println(student);
             int index =-1;
             for (Student student1 : studentList) {
@@ -56,18 +56,18 @@ public class Manage {
             }
             byte confirm;
             do {
-                //System.out.println("Bạn có muốn sửa lại mã sinh viên này??? (OK [1]/ HUY[2]) !!!");
-                LOGGER.info("Bạn có muốn sửa lại mã sinh viên này??? (OK [1]/ HUY[2]) !!!");
+                System.out.println("\u001B[31m"+"Bạn có muốn sửa lại mã sinh viên này??? (OK [1]/ HUY[2]) !!!"+"\u001B[0m");
+               // LOGGER.info("Bạn có muốn sửa lại mã sinh viên này??? (OK [1]/ HUY[2]) !!!");
                 confirm = sc.nextByte();
                 switch (confirm) {
                     case 1:
                       studentList.set(index,student);
-                      // System.out.println("Sửa thành công !!!")
-                        LOGGER.info("Sửa thành công !!!");
+                       System.out.println("\u001B[31m"+"Sửa thành công !!!"+"\u001B[0m");
+                       // LOGGER.info("Sửa thành công !!!");
                         break;
                     case 2:
-                       // System.out.println("Hủy thành công !!!");
-                        LOGGER.info("Hủy thành công !!!");
+                        System.out.println("\u001B[31m"+"Hủy thành công !!!"+"\u001B[0m");
+                       // LOGGER.info("Hủy thành công !!!");
                         break;
 
                 }
@@ -75,8 +75,8 @@ public class Manage {
 
         } else {
             studentList.add(student);
-           // System.out.println("Thêm sinh viên thành công !!!");
-            LOGGER.info("Thêm sinh viên thành công !!!");
+            System.out.println("\u001B[31m"+"Thêm sinh viên thành công !!!"+"\u001B[0m");
+           // LOGGER.info("Thêm sinh viên thành công !!!");
         }
         writeFile.write(studentList);
     }
@@ -92,23 +92,24 @@ public class Manage {
         if (index != -1) {
             byte confirm;
             do {
-                //System.out.println("Bạn có chắc chắn muốn xóa (OK [1]/ HUY[2]) !!!");
-                LOGGER.info("Bạn có chắc chắn muốn xóa (OK [1]/ HUY[2]) !!!");
+                System.out.println("\u001B[31m"+"Bạn có chắc chắn muốn xóa (OK [1]/ HUY[2]) !!!"+"\u001B[0m");
+               // LOGGER.info("Bạn có chắc chắn muốn xóa (OK [1]/ HUY[2]) !!!");
                 confirm = sc.nextByte();
                 switch (confirm) {
                     case 1:
                         studentList.remove(studentList.get(index));
                         break;
                     case 2:
-                       // System.out.println("Hủy thành công !!!");
-                        LOGGER.info("Hủy thành công !!!");
+                        System.out.println("\u001B[31m"+"Hủy thành công !!!"+"\u001B[0m");
+                      //  LOGGER.info("Hủy thành công !!!");
                         break;
 
                 }
             }while (confirm!=1 && confirm!=2);
         }
         else {
-            LOGGER.info("Không tồn tại mã sinh viên này !!!");
+            //LOGGER.info("Không tồn tại mã sinh viên này !!!");
+            System.out.println("\u001B[31m"+"Không tồn tại mã sinh viên này !!!"+"\u001B[0m");
         }
 
             writeFile.write(studentList);
@@ -129,7 +130,7 @@ public class Manage {
                Scanner sc=new Scanner(System.in);
                int choice;
                do {
-                   System.out.println("""
+                   System.out.println("\u001B[32m"+"""
               0.Thoát.
               1.Sửa họ và tên.
               2.Sửa giới tính.
@@ -138,26 +139,28 @@ public class Manage {
               5.Sửa địa chỉ.
               6.Sửa Email.
               7.Sửa điểm.      
-           """);
+           """+"\u001B[0m");
                    choice = sc.nextInt();
                    sc.nextLine();
                    switch (choice){
                        case 1:
-                           System.out.println("Nhập họ và tên:");
+                           System.out.println("\u001B[32m"+"Nhập họ và tên:"+"\u001B[0m");
                            String name = sc.nextLine();
                            while (!check.checkName(name)){
-                               LOGGER.info("Tên không đúng định dạng !!!");
+                              // LOGGER.info("Tên không đúng định dạng !!!");
+                               System.out.println("\u001B[31m"+"Tên không đúng định dạng !!!"+"\u001B[0m");
                                name=sc.nextLine();
                            }
                            studentList.get(index).setName(name);
-                           LOGGER.info("Cập nhập tên thành công !!!");
+                           System.out.println("\u001B[31m"+"Cập nhập tên thành công !!!"+"\u001B[0m");
+                          // LOGGER.info("Cập nhập tên thành công !!!");
                            break;
                        case 2:
-                           System.out.println("Nhập giới tính:");
+                           System.out.println("\u001B[32m"+"Nhập giới tính:"+"\u001B[0m");
                            Student.Gender gender = null;
                            int choi;
                            do {
-                               System.out.println("(1:Nam// 2:Nữ// 3:Khác)");
+                               System.out.println("\u001B[32m"+"(1:Nam// 2:Nữ// 3:Khác)"+"\u001B[0m");
                                choi = sc.nextInt();
                                switch (choi) {
                                    case 1:
@@ -172,83 +175,86 @@ public class Manage {
                                }
                            }while (choi!=1 && choi!=2 && choi!=3);
                            studentList.get(index).setGender(gender);
-                           LOGGER.info("Cập nhập giới tính thành công !!!");
+                          // LOGGER.info("Cập nhập giới tính thành công !!!");
+                           System.out.println("\u001B[31m"+"Cập nhập giới tính thành công !!!"+"\u001B[0m");
                            break;
                        case 3:
                            LocalDate dateOfBrith= null;
                            boolean checkDate = false;
                            while (!checkDate){
                                try {
-                                   System.out.println("Nhập ngày tháng năm sinh (yyyy-mm-dd):");
+                                   System.out.println("\u001B[32m"+"Nhập ngày tháng năm sinh (yyyy-mm-dd):"+"\u001B[0m");
                                    dateOfBrith=LocalDate.parse(sc.nextLine());
                                    checkDate=true;
                                }catch (DateTimeException e){
                                    // System.out.println("Ngày tháng năm không hợp lệ !!!");
-                                   LOGGER.info("Ngày tháng năm không hợp lệ !!!");
+                                   System.out.println("\u001B[31m"+"Ngày tháng năm không hợp lệ !!!"+"\u001B[0m");
                                }
                            }
                            studentList.get(index).setDateOfBrith(dateOfBrith);
-                           LOGGER.info("Cập nhập ngày tháng năm sinh thành công !!!");
+                           System.out.println("\u001B[31m"+"Cập nhập ngày tháng năm sinh thành công !!!"+"\u001B[0m");
+                           //LOGGER.info("Cập nhập ngày tháng năm sinh thành công !!!");
                            break;
                        case 4:
-                           System.out.println("Nhập số điện thoại (+84)-(xxxxxxxxx)");
+                           System.out.println("\u001B[32m"+"Nhập số điện thoại (+84)-(xxxxxxxxx)"+"\u001B[0m");
                            String phone = sc.nextLine();
                            while (!check.checkPhone(phone)){
-                               System.out.println("Số điện thoại không đúng,(+84)-(xxxxxxxxx)");
+                               System.out.println("\u001B[31m"+"Số điện thoại không đúng,(+84)-(xxxxxxxxx)"+"\u001B[0m");
                                phone=sc.nextLine();
                            }
                            studentList.get(index).setPhoneNumber(phone);
-                           LOGGER.info("Cập nhập số điện thoại thành công !!!");
+                           System.out.println("\u001B[31m"+"Cập nhập số điện thoại thành công !!!"+"\u001B[0m");
                            break;
                        case 5:
-                           System.out.println("Nhập địa chỉ:");
-                           System.out.println("Số nhà:");
+                           System.out.println("\u001B[32m"+"Nhập địa chỉ:"+"\u001B[0m");
+                           System.out.println("\u001B[32m"+"Số nhà:"+"\u001B[0m");
                            String homeNumber = sc.nextLine();
-                           System.out.println("Xã:");
+                           System.out.println("\u001B[32m"+"Xã:"+"\u001B[0m");
                            String social = sc.nextLine();
-                           System.out.println("Huyện:");
+                           System.out.println("\u001B[32m"+"Huyện:"+"\u001B[0m");
                            String provincial= sc.nextLine();
-                           System.out.println("Tỉnh:");
+                           System.out.println("\u001B[32m"+"Tỉnh:"+"\u001B[0m");
                            String districts= sc.nextLine();
                            Address address=new Address(homeNumber,social,provincial,districts);
                            studentList.get(index).setAddress(address);
-                           LOGGER.info("Cập nhập địa chỉ thành công !!!");
+                           System.out.println("\u001B[31m"+"Cập nhập địa chỉ thành công !!!"+"\u001B[0m");
                            break;
                        case 6:
-                           System.out.println("Nhập Email:");
+                           System.out.println("\u001B[32m"+"Nhập Email:"+"\u001B[0m");
                            String email = sc.nextLine();
                            while(!check.checkEmail(email)){
-                               // System.out.println("Email không đúng định dạng, nhập lại Email:");
-                               LOGGER.info("Email không đúng định dạng, nhập lại Email !!!");
+                                System.out.println("\u001B[31m"+"Email không đúng định dạng, nhập lại Email:"+"\u001B[0m");
+                               //LOGGER.info("Email không đúng định dạng, nhập lại Email !!!");
                                email=sc.nextLine();
                            }
                            studentList.get(index).setEmail(email);
-                           LOGGER.info("Cập nhập Email thành công !!!");
+                           System.out.println("\u001B[31m"+"Cập nhập Email thành công !!!"+"\u001B[0m");
+                           //LOGGER.info("Cập nhập Email thành công !!!");
                            break;
                        case 7:
-                           System.out.println("Nhập điểm:");
-                           System.out.println("Điểm toán:");
+                           System.out.println("\u001B[32m"+"Nhập điểm:"+"\u001B[0m");
+                           System.out.println("\u001B[32m"+"Điểm toán:"+"\u001B[0m");
                            double mathScores = sc.nextDouble();
-                           System.out.println("Điểm lý:");
+                           System.out.println("\u001B[32m"+"Điểm lý:"+"\u001B[0m");
                            double  physicalScore = sc.nextDouble();
-                           System.out.println("Điểm hóa:");
+                           System.out.println("\u001B[32m"+"Điểm hóa:"+"\u001B[0m");
                            double chemistryScore=sc.nextDouble();
                            Scores scores=new Scores(mathScores,physicalScore,chemistryScore);
                            studentList.get(index).setScores(scores);
-                           LOGGER.info("Cập nhập điểm thành công !!!");
+                           System.out.println("\u001B[31m"+"Cập nhập điểm thành công !!!"+"\u001B[0m");
                            break;
                    }
                }while (choice!=0);
            }
            else {
-               LOGGER.info("Không tồn tại mã sinh viên này !!!");
+               System.out.println("\u001B[31m"+"Không tồn tại mã sinh viên này !!!"+"\u001B[0m");
            }
            writeFile.write(studentList);
        }
 
         //hiển thị danh sách
         public void displayStudent(){
-             System.out.println("Danh sách sinh viên !!!");
+             System.out.println("\u001B[32m"+"Danh sách sinh viên !!!"+"\u001B[0m");
            // LOGGER.info("Danh sách sinh viên !!!");
             for (int i = 0; i < studentList.size(); i++) {
                 System.out.println("STT "+(i+1)+" "+studentList.get(i));
@@ -300,37 +306,37 @@ public class Manage {
     }
     // phân loại học lực học sinh
       public void studentClassification(){
-          System.out.println("Sinh viên học lực kém !!!");
+          System.out.println("\u001B[32m"+"Sinh viên học lực kém !!!"+"\u001B[0m");
           for (int i = 0; i < studentList.size(); i++) {
               if(studentList.get(i).averageOfSubject()>=0 && studentList.get(i).averageOfSubject()<4){
                   System.out.println(studentList.get(i));
               }
           }
-             System.out.println("Sinh viên học lực yếu !!!");
+             System.out.println("\u001B[32m"+"Sinh viên học lực yếu !!!"+"\u001B[0m");
           for (int i = 0; i < studentList.size(); i++) {
               if (studentList.get(i).averageOfSubject()>=4 && studentList.get(i).averageOfSubject() < 5) {
                   System.out.println(studentList.get(i));
               }
           }
-             System.out.println("Sinh viên học lực trung bình !!!");
+             System.out.println("\u001B[32m"+"Sinh viên học lực trung bình !!!"+"\u001B[31m");
           for (int i = 0; i < studentList.size(); i++) {
               if (studentList.get(i).averageOfSubject()>=5 && studentList.get(i).averageOfSubject() < 7) {
                   System.out.println(studentList.get(i));
               }
           }
-           System.out.println("Sinh viên học lực khá !!!");
+           System.out.println("\u001B[32m"+"Sinh viên học lực khá !!!"+"\u001B[31m");
           for (int i = 0; i < studentList.size(); i++) {
               if (studentList.get(i).averageOfSubject()>=7 && studentList.get(i).averageOfSubject() < 8) {
                   System.out.println(studentList.get(i));
               }
           }
-               System.out.println("Sinh viên học lực giỏi !!!");
+               System.out.println("\u001B[32m"+"Sinh viên học lực giỏi !!!"+"\u001B[0m");
           for (int i = 0; i < studentList.size(); i++) {
               if (studentList.get(i).averageOfSubject()>=8 && studentList.get(i).averageOfSubject() <= 9) {
                   System.out.println(studentList.get(i));
               }
           }
-          System.out.println("Sinh viên học lực xuất sắc !!!");
+          System.out.println("\u001B[32m"+"Sinh viên học lực xuất sắc !!!"+"\u001B[0m");
           for (int i = 0; i < studentList.size(); i++) {
               if (studentList.get(i).averageOfSubject()>9 && studentList.get(i).averageOfSubject() <= 10) {
                   System.out.println(studentList.get(i));
@@ -348,12 +354,13 @@ public class Manage {
                   }
               }
              if(!check){
-                 LOGGER.info("Không tồn tại mã sinh viên này !!!");
+                 //LOGGER.info("Không tồn tại mã sinh viên này !!!");
+                 System.out.println("\u001B[31m"+"Không tồn tại mã sinh viên này !!!"+"\u001B[0m");
              }
           }
 
           // tìm kiếm theo tên
-    public void searchNameStudent(String name){
+        public void searchNameStudent(String name){
         boolean check =false;
         for (int i = 0; i < studentList.size(); i++) {
             if(studentList.get(i).getName().toLowerCase().contains(name.toLowerCase())){
@@ -362,7 +369,8 @@ public class Manage {
             }
         }
         if(!check){
-            LOGGER.info("Không tồn tại tên này !!!");
+            //LOGGER.info("Không tồn tại tên này !!!");
+            System.out.println("\u001B[31m"+"Không tồn tại tên này !!!"+"\u001B[0m");
         }
     }
       }
