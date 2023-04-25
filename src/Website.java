@@ -5,7 +5,7 @@ public class Website {
         Scanner scanner =new Scanner(System.in);
         int choice;
         do {
-            System.out.println("""
+            System.out.println("\u001B[32m"+"""
                   <><><><><><><><><><><><><><><><><><><><>  
                   <>                                    <> 
                   <>    0.Thoát !!!                     <>
@@ -15,9 +15,9 @@ public class Website {
                   <>    2.Đăng Nhập !!!                 <>
                   <>                                    <>
                   <><><><><><><><><><><><><><><><><><><><>
-                    """);
+                    """+"\u001B[0m");
             System.out.println();
-            System.out.println("Mời chọn chức năng !!!");
+            System.out.println("\u001B[32m" +"Mời chọn chức năng !!!" + "\u001B[0m");
             choice = scanner.nextInt();
             switch (choice){
                 case 1:
