@@ -46,9 +46,9 @@ public class Scores implements Serializable {
     @Override
     public String toString() {
         return "[" +
-                " Môn toán: " + mathScores +
-                ", Môn lý: " + physicalScore +
-                ", Môn hóa: " + chemistryScore +
+                "\u001B[32m"+  " Môn toán: "+"\u001B[0m"+ mathScores +
+                "\u001B[32m"+", Môn lý: " +"\u001B[0m"+ physicalScore +
+                "\u001B[32m"+ ", Môn hóa: "+"\u001B[0m" + chemistryScore +
                 "]";
     }
 }
