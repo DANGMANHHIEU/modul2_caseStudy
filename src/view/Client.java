@@ -13,31 +13,33 @@ import java.util.logging.Logger;
 public class Client {
    // public static List<Student> studentList = new ArrayList<>();
    public static Manage manage = new Manage();
-    private static final Logger LOGGER =Logger.getLogger(String.valueOf(Manage.class));
+    //private static final Logger LOGGER =Logger.getLogger(String.valueOf(Manage.class));
 
      //thêm sinh viên
     public static void Add(){
         Check check=new Check();
         Scanner sc= new Scanner(System.in);
-        System.out.println("Nhập mã sinh viên (SV000000):");
+        System.out.println("\u001B[32m"+"Nhập mã sinh viên (SV000000):"+"\u001B[0m");
         String id = sc.nextLine();
         while (!check.checkId(id)){
-            LOGGER.info("Mã sinh viên không đúng(SV000000)!!!");
+            //LOGGER.info("Mã sinh viên không đúng(SV000000)!!!");
+            System.out.println("\u001B[31m"+"Mã sinh viên không đúng(SV000000)!!!"+"\u001B[0m");
             id=sc.nextLine();
         }
 
-        System.out.println("Nhập họ và tên:");
+        System.out.println("\u001B[32m"+"Nhập họ và tên:"+"\u001B[0m");
         String name = sc.nextLine();
         while (!check.checkName(name)){
-            LOGGER.info("Tên không đúng định dạng !!!");
+            //LOGGER.info("Tên không đúng định dạng !!!");
+            System.out.println("\u001B[31m"+"Tên không đúng định dạng !!!"+"\u001B[0m");
             name=sc.nextLine();
         }
 
-        System.out.println("Nhập giới tính:");
+        System.out.println("\u001B[32m"+"Nhập giới tính:"+"\u001B[0m");
         Student.Gender gender = null;
         int choice;
         do {
-            System.out.println("(1:Nam// 2:Nữ// 3:Khác)");
+            System.out.println("\u001B[32m"+"(1:Nam// 2:Nữ// 3:Khác)"+"\u001B[0m");
           choice = sc.nextInt();
 
            switch (choice) {
@@ -58,48 +60,48 @@ public class Client {
         boolean checkDate = false;
         while (!checkDate){
             try {
-                System.out.println("Nhập ngày tháng năm sinh (yyyy-mm-dd):");
+                System.out.println("\u001B[32m"+"Nhập ngày tháng năm sinh (yyyy-mm-dd):"+"\u001B[0m");
                 dateOfBrith=LocalDate.parse(sc.nextLine());
                 checkDate=true;
             }catch (DateTimeException e){
-               // System.out.println("Ngày tháng năm không hợp lệ !!!");
-                LOGGER.info("Ngày tháng năm không hợp lệ !!!");
+                System.out.println("\u001B[31m"+"Ngày tháng năm không hợp lệ !!!"+"\u001B[0m");
+                //LOGGER.info("Ngày tháng năm không hợp lệ !!!");
             }
         }
 
-        System.out.println("Nhập địa chỉ:");
-        System.out.println("Số nhà:");
+        System.out.println("\u001B[32m"+"Nhập địa chỉ:"+"\u001B[0m");
+        System.out.println("\u001B[32m"+"Số nhà:"+"\u001B[0m");
         String homeNumber = sc.nextLine();
-        System.out.println("Xã:");
+        System.out.println("\u001B[32m"+"Xã:"+"\u001B[0m");
         String social = sc.nextLine();
-        System.out.println("Huyện:");
+        System.out.println("\u001B[32m"+"Huyện:"+"\u001B[0m");
         String provincial= sc.nextLine();
-        System.out.println("Tỉnh:");
+        System.out.println("\u001B[32m"+"Tỉnh:"+"\u001B[0m");
         String districts= sc.nextLine();
         Address address=new Address(homeNumber,social,provincial,districts);
 
 
-        System.out.println("Nhập Email:");
+        System.out.println("\u001B[32m"+"Nhập Email:"+"\u001B[0m");
         String email = sc.nextLine();
          while(!check.checkEmail(email)){
-            // System.out.println("Email không đúng định dạng, nhập lại Email:");
-             LOGGER.info("Email không đúng định dạng, nhập lại Email !!!");
+             System.out.println("\u001B[31m"+"Email không đúng định dạng, nhập lại Email:"+"\u001B[0m");
+             //LOGGER.info("Email không đúng định dạng, nhập lại Email !!!");
              email=sc.nextLine();
          }
 
-        System.out.println("Nhập số điện thoại (+84)-(xxxxxxxxx)");
+        System.out.println("\u001B[32m"+"Nhập số điện thoại (+84)-(xxxxxxxxx)"+"\u001B[0m");
          String phone = sc.nextLine();
          while (!check.checkPhone(phone)){
-             System.out.println("Số điện thoại không đúng,(+84)-(xxxxxxxxx)");
+             System.out.println("\u001B[31m"+"Số điện thoại không đúng,(+84)-(xxxxxxxxx)"+"\u001B[0m");
              phone=sc.nextLine();
          }
 
-        System.out.println("Nhập điểm:");
-        System.out.println("Điểm toán:");
+        System.out.println("\u001B[32m"+"Nhập điểm:"+"\u001B[0m");
+        System.out.println("\u001B[32m"+"Điểm toán:"+"\u001B[0m");
         double mathScores = sc.nextDouble();
-        System.out.println("Điểm lý:");
+        System.out.println("\u001B[32m"+"Điểm lý:"+"\u001B[0m");
         double  physicalScore = sc.nextDouble();
-        System.out.println("Điểm hóa:");
+        System.out.println("\u001B[32m"+"Điểm hóa:"+"\u001B[0m");
         double chemistryScore=sc.nextDouble();
         Scores scores=new Scores(mathScores,physicalScore,chemistryScore);
         Student student=new Student(id,name,gender,dateOfBrith,phone,address,email,scores);
@@ -109,15 +111,16 @@ public class Client {
     //xóa sinh viên
     public static void Delete(){
         Scanner sc=new Scanner(System.in);
-        System.out.println("Nhập mã sinh viên:");
+        System.out.println("\u001B[32m"+"Nhập mã sinh viên:"+"\u001B[0m");
         String id = sc.nextLine();
         manage.deleteStudent(id);
+        System.out.println("\u001B[32m"+"Xóa sinh viên thành công !!!"+"\u001B[0m");
     }
 
     //sửa sinh viên
     public static void Update(){
      Scanner sc=new Scanner(System.in);
-        System.out.println("Nhập mã sinh viên:");
+        System.out.println("\u001B[32m"+"Nhập mã sinh viên:"+"\u001B[0m");
      String id =sc.nextLine();
      manage.updateStudent(id);
     }
@@ -140,7 +143,7 @@ public class Client {
     // tìm kiếm theo mã sinh viên
     public static void search(){
         Scanner sc=new Scanner(System.in);
-        System.out.println("Nhập mã sinh viên:");
+        System.out.println("\u001B[32m"+"Nhập mã sinh viên:"+"\u001B[0m");
         String id = sc.nextLine();
        manage.searchStudent(id);
     }
@@ -148,7 +151,7 @@ public class Client {
     //tìm kiếm theo tên
       public static void searchName(){
         Scanner sc = new Scanner(System.in);
-          System.out.println("Nhập tên:");
+          System.out.println("\u001B[32m"+"Nhập tên:"+"\u001B[0m");
           String name=sc.nextLine();
           manage.searchNameStudent(name);
       }
