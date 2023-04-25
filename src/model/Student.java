@@ -103,18 +103,18 @@ public class Student implements Serializable {
     }
     @Override
     public String toString() {
-        return "*** Student {" +
-                " Mã sinh viên: " + id +
-                "| Họ và tên: " + name +
-                "| Giới tính: " + gender +
-                "| Ngày sinh: " + dateOfBrith +
-                "| Email: " + email +"\n"+
-                "| SĐT: "+phoneNumber+
-                " Địa chỉ: " + address +"\n"+
-                " Điểm: " + scores +
-                "==> Điểm trung bình: "+this.averageOfSubject()+
+        return "***"+"\u001B[31m"+" Student"+"\u001B[0m"+" {" +
+                "\u001B[32m"+ " Mã sinh viên: " +"\u001B[0m"+ id +
+                "\u001B[32m"+"| Họ và tên: "+"\u001B[0m" + name +
+                "\u001B[32m"+  "| Giới tính: "+"\u001B[0m" + gender +
+                "\u001B[32m"+"| Ngày sinh: "+"\u001B[0m" + dateOfBrith +
+                "\u001B[32m"+ "| Email: "+"\u001B[0m" + email +"\n"+
+                "\u001B[32m"+ "| SĐT: "+"\u001B[0m"+phoneNumber+
+                "\u001B[32m"+  " Địa chỉ: "+"\u001B[0m" + address +"\n"+
+               "\u001B[32m"+ " Điểm: "+"\u001B[0m" + scores +
+                "\u001B[32m"+ "==> Điểm trung bình: "+"\u001B[0m"+this.averageOfSubject()+
                 "}"+
                 "\n"+
-                "----------------------------";
+                "------------------------------------";
     }
 }
